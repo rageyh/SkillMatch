@@ -1,0 +1,482 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 60px; /* Space for footer */
+    position: relative;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1E90FF;
+    color: white;
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+#search-input {
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+}
+
+#search-button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    background-color: #32CD32;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Action Buttons */
+.actions button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #1E90FF;
+    border: 1px solid #1E90FF;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    margin: 1rem;
+    gap: 1rem;
+    min-height: calc(100vh - 180px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 25%;
+    min-width: 250px;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+}
+
+.filter-section {
+    margin-bottom: 2rem;
+}
+
+.filter-section h4 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.filter-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-item input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.filter-item label {
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#experience-slider {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+#experience-value {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* CV Feed */
+.cv-feed {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    align-content: start;
+}
+
+.cv-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.cv-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cv-description {
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1E90FF;
+    outline: none;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #1E90FF;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #187BE5;
+}
+
+/* CV Details */
+#cv-details {
+    padding: 1rem 0;
+}
+
+.competenze-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.competenza-tag {
+    background-color: #e9ecef;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1E90FF;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #fff;
+    }
+
+    .sidebar,
+    .cv-card,
+    .modal-content {
+        background-color: #2d2d2d;
+        color: #fff;
+    }
+
+    .form-group label {
+        color: #fff;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        background-color: #333;
+        color: #fff;
+        border-color: #444;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #3498db;
+    }
+
+    .close {
+        color: #fff;
+    }
+
+    #cv-details h2,
+    .filter-section h4 {
+        color: #fff;
+    }
+
+    .cv-description {
+        color: #ccc;
+    }
+
+    .competenza-tag {
+        background-color: #495057;
+        color: #fff;
+    }
+
+    #search-input {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .actions button {
+        background-color: #2d2d2d;
+        color: #3498db;
+        border-color: #3498db;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .cv-feed {
+        width: 100%;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .search-bar {
+        max-width: none;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .actions button {
+        margin: 0;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+        padding: 1rem;
+    }
+
+    .cv-feed {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        margin: 0.5rem;
+    }
+
+    .competenze-list {
+        gap: 0.25rem;
+    }
+
+    .competenza-tag {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .modal-content {
+        padding: 0.75rem;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    .cv-card,
+    .modal-content {
+        transition: none;
+    }
+
+    .cv-card:hover {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .sidebar,
+    .footer,
+    .actions {
+        display: none;
+    }
+
+    .container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .cv-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    body {
+        background: white;
+        padding-bottom: 0;
+    }
+}
+
+/* Focus Styles */
+:focus {
+    outline: 2px solid #1E90FF;
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: skillmatch-mongodb
+    restart: always
+    command: mongod --port 27018
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mario
+      MONGO_INITDB_ROOT_PASSWORD: arrigoni
+    ports:
+      - "27018:27018"
+    volumes:
+      - mongodb_data:/data/db
+
+  neo4j:
+    image: neo4j:5.13
+    container_name: skillmatch-neo4j
+    restart: always
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/password
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+
+  skillmatch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: skillmatch-app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mario:arrigoni@mongodb:27018/skillmatch?authSource=admin
+      SPRING_NEO4J_URI: bolt://neo4j:7687
+      SPRING_NEO4J_AUTHENTICATION_USERNAME: neo4j
+      SPRING_NEO4J_AUTHENTICATION_PASSWORD: password
+    depends_on:
+      - mongodb
+      - neo4j
+    volumes:
+      - ./src/main/resources/static:/app/static
+
+volumes:
+  mongodb_data:
+  neo4j_data:
+  neo4j_logs:
