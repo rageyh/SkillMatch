@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkillMatch - Piattaforma di Matching per Competenze</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo">SkillMatch</div>
+        <div class="logo-container">
+            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="22" fill="#1E90FF"/>
+                <path d="M15 20 L35 20 L25 35 Z" fill="white"/>
+                <circle cx="25" cy="15" r="5" fill="white"/>
+            </svg>
+            <span class="logo-text">SkillMatch</span>
+        </div>
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Cerca competenze, ruoli o nomi...">
-            <button id="search-button">Cerca</button>
+            <button id="search-button">
+                <i class="search-icon">🔍</i>
+                Cerca
+            </button>
         </div>
         <div class="actions">
-            <button id="upload-cv">Carica il tuo CV</button>
+            <button id="upload-cv" class="btn-professional">
+                <i class="upload-icon">📤</i>
+                Carica CV
+            </button>
         </div>
     </header>
 

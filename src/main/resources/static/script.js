@@ -39,23 +39,53 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(`http://localhost:8080/api/cvs/${cvId}`);
             const cv = await response.json();
-
+    
             const modalBody = document.getElementById("modal-body");
             modalBody.innerHTML = `
                 <div id="cv-details">
-                    <h2>${cv.nome} - ${cv.ruolo}</h2>
-                    <p><strong>Anni di Esperienza:</strong> ${cv.anniEsperienza}</p>
-                    <h3>Competenze</h3>
-                    <div class="competenze-list">
-                        ${cv.competenze.map(competenza => 
-                            `<span class="competenza-tag">${competenza}</span>`
-                        ).join('')}
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        ${cv.nome} - ${cv.ruolo}
+                    </h2>
+                    <div class="cv-detail-section">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            Esperienza Professionale
+                        </h3>
+                        <p class="detailed-expirience"><strong>Anni di Esperienza:</strong> ${cv.anniEsperienza} anni</p>
                     </div>
-                    <h3>Descrizione</h3>
-                    <p>${cv.descrizione}</p>
+                    <div class="cv-detail-section">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            Competenze
+                        </h3>
+                        <div class="competenze-list">
+                            ${cv.competenze.map(competenza => 
+                                `<span class="competenza-tag">${competenza}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div class="cv-detail-section">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            Descrizione Profilo
+                        </h3>
+                        <p class="detailed-description">${cv.descrizione}</p>
+                    </div>
                 </div>
             `;
-
+    
             modal.style.display = "block";
         } catch (error) {
             console.error("Error fetching CV details:", error);
@@ -144,28 +174,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    
     function renderCVs(cvs) {
         cvFeed.innerHTML = "";
         if (cvs.length === 0) {
-            cvFeed.innerHTML = "<p>Nessun risultato trovato.</p>";
+            cvFeed.innerHTML = "<p class='no-results'>Nessun risultato trovato.</p>";
             return;
         }
-
+    
         cvs.forEach((cv) => {
             const card = document.createElement("div");
             card.className = "cv-card";
             card.innerHTML = `
                 <h3>${cv.nome} - ${cv.ruolo}</h3>
-                <p><strong>Esperienza:</strong> ${cv.anniEsperienza} anni</p>
-                <p><strong>Competenze:</strong> ${cv.competenze.join(", ")}</p>
-                <p class="cv-description">${cv.descrizione}</p>
-                <button class="view-cv-btn" data-cv-id="${cv.id}">
-                    Visualizza CV Completo
-                </button>
+                <div class="cv-card-content">
+                    <p><strong>Esperienza:</strong> ${cv.anniEsperienza} anni</p>
+                    <p><strong>Competenze:</strong> ${cv.competenze.join(", ")}</p>
+                    <p class="cv-description">${cv.descrizione}</p>
+                    <button class="view-cv-btn" data-cv-id="${cv.id}">
+                        <i>👁️</i>
+                        Visualizza Dettagli CV
+                    </button>
+                </div>
             `;
             cvFeed.appendChild(card);
         });
-
+    
         // Add event listeners to view CV buttons
         cvFeed.querySelectorAll(".view-cv-btn").forEach(btn => {
             btn.addEventListener("click", () => {
@@ -174,6 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+    
 
     // Existing filter and search functions
     async function loadFilters() {
