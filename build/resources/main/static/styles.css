@@ -480,3 +480,165 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+
+/* Logo Styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover .logo-icon {
+    transform: rotate(15deg);
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Professional Button Styles */
+.btn-professional {
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-professional:hover {
+    background-color: #2ECC71;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-professional .upload-icon,
+.search-button .search-icon {
+    font-size: 1.2rem;
+}
+
+/* Enhanced CV Card Styles */
+.cv-card {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.cv-card h3 {
+    background-color: #1E90FF;
+    color: white;
+    padding: 0.75rem;
+    margin: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.view-cv-btn {
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: auto;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.view-cv-btn:hover {
+    background-color: #2ECC71;
+    transform: scale(1.02);
+}
+
+
+
+/* Modal Enhancements */
+#cv-details {
+    background-color: #fbf9f9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+#cv-details h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+
+.cv-detail-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(241, 3, 3, 0.05);
+}
+
+
+.cv-detail-section h3 {
+    color: #2980b9;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+
+.competenze-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: #f8f0f0;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.competenza-tag {
+    background-color: #3498db;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.competenza-tag:hover {
+    background-color: #2980b9;
+}
+
+.detailed-description {
+    line-height: 1.6;
+    color: #34495e;
+}
+
+.detailed-expirience {
+    line-height: 1.6;
+    color: #34495e;
+}

@@ -18,21 +18,21 @@ public class CvController {
     @Autowired
     private CvService cvService;
 
-    // Ottieni CV filtrati
+
     @PostMapping
     public ResponseEntity<List<Cv>> getCvs(@RequestBody Map<String, Object> filters) {
         List<Cv> cvs = cvService.getCvs(filters);
         return ResponseEntity.ok(cvs);
     }
 
-    // Carica un nuovo CV
+
     @PostMapping("/upload")
     public ResponseEntity<Cv> uploadCv(@RequestBody Cv cv) {
         Cv savedCv = cvService.saveCv(cv);
         return ResponseEntity.ok(savedCv);
     }
 
-    // Aggiorna un CV esistente
+
     @PutMapping("/{id}")
     public ResponseEntity<Cv> updateCv(@PathVariable String id, @RequestBody Cv updatedCv) {
         Cv cv = cvService.updateCv(id, updatedCv);
@@ -43,14 +43,13 @@ public class CvController {
         }
     }
 
-    // Elimina un CV
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCv(@PathVariable String id) {
         cvService.deleteCv(id);
         return ResponseEntity.noContent().build();
     }
 
-    // Ottieni un CV specifico tramite ID
     @GetMapping("/{id}")
     public ResponseEntity<Cv> getCvById(@PathVariable String id) {
         Cv cv = cvService.getCvById(id);
@@ -61,7 +60,7 @@ public class CvController {
         }
     }
 
-    // Ottieni tutti i CV
+
     @GetMapping
     public ResponseEntity<List<Cv>> getAllCvs() {
         List<Cv> cvs = cvService.getAllCvs();
