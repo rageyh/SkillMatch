@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
     const cvFeed = document.getElementById("cv-feed");
     const searchInput = document.getElementById("search-input");
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedSkills = new Set();
     let selectedRoles = new Set();
 
-    // Modal for CV details and upload
+
     function createModal() {
         const modal = document.createElement("div");
         modal.id = "cv-modal";
@@ -24,22 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
         document.body.appendChild(modal);
-        
-        // Aggiungi questi gestori eventi
+
+
         modal.querySelector(".close").addEventListener("click", () => modal.style.display = "none");
         window.addEventListener("click", (e) => e.target === modal && (modal.style.display = "none"));
-        
+
         return modal;
     }
 
     const modal = createModal();
 
-    // Function to view full CV details
+
     async function viewFullCV(cvId) {
         try {
             const response = await fetch(`http://localhost:8080/api/cvs/${cvId}`);
             const cv = await response.json();
-    
+
             const modalBody = document.getElementById("modal-body");
             modalBody.innerHTML = `
                 <div id="cv-details">
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             Competenze
                         </h3>
                         <div class="competenze-list">
-                            ${cv.competenze.map(competenza => 
+                            ${cv.competenze.map(competenza =>
                                 `<span class="competenza-tag">${competenza}</span>`
                             ).join('')}
                         </div>
@@ -85,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
             `;
-    
+
             modal.style.display = "block";
         } catch (error) {
             console.error("Error fetching CV details:", error);
@@ -93,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Function to show CV upload form
+
     function showCvUploadForm() {
         const modalBody = document.getElementById("modal-body");
         modalBody.innerHTML = `
@@ -126,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("cv-upload-form");
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
-            
+
             const cv = {
                 nome: document.getElementById("nome").value,
                 ruolo: document.getElementById("ruolo").value,
@@ -158,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "block";
     }
 
-    // Existing functions from previous implementation
+
     async function fetchCVs(filters = {}) {
         try {
             const response = await fetch("http://localhost:8080/api/cvs", {
@@ -174,14 +173,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    
+
     function renderCVs(cvs) {
         cvFeed.innerHTML = "";
         if (cvs.length === 0) {
             cvFeed.innerHTML = "<p class='no-results'>Nessun risultato trovato.</p>";
             return;
         }
-    
+
         cvs.forEach((cv) => {
             const card = document.createElement("div");
             card.className = "cv-card";
@@ -199,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             cvFeed.appendChild(card);
         });
-    
-        // Add event listeners to view CV buttons
+
+
         cvFeed.querySelectorAll(".view-cv-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const cvId = btn.getAttribute("data-cv-id");
@@ -208,9 +207,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    
 
-    // Existing filter and search functions
+
+
     async function loadFilters() {
         try {
             const [competenzeResponse, ruoliResponse] = await Promise.all([
@@ -284,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await fetchCVs(filters);
     }
 
-    // Event listeners
+
     searchButton.addEventListener("click", applyFilters);
     searchInput.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
@@ -292,10 +291,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Add event listener for CV upload button
+
     uploadCvBtn.addEventListener("click", showCvUploadForm);
 
-    // Load filters and CVs on startup
     loadFilters();
     fetchCVs();
 });

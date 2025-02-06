@@ -11,11 +11,11 @@ body {
     color: #333;
     line-height: 1.6;
     min-height: 100vh;
-    padding-bottom: 60px; /* Space for footer */
+    padding-bottom: 60px;
     position: relative;
 }
 
-/* Header */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@ body {
     font-weight: bold;
 }
 
-/* Search Bar */
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -58,7 +58,7 @@ body {
     white-space: nowrap;
 }
 
-/* Action Buttons */
+
 .actions button {
     margin-left: 1rem;
     padding: 0.5rem 1rem;
@@ -70,7 +70,7 @@ body {
     white-space: nowrap;
 }
 
-/* Main Container */
+
 .container {
     display: flex;
     margin: 1rem;
@@ -78,7 +78,7 @@ body {
     min-height: calc(100vh - 180px);
 }
 
-/* Sidebar */
+
 .sidebar {
     width: 25%;
     min-width: 250px;
@@ -125,7 +125,7 @@ body {
     color: #666;
 }
 
-/* CV Feed */
+
 .cv-feed {
     flex-grow: 1;
     display: grid;
@@ -154,7 +154,7 @@ body {
     color: #666;
 }
 
-/* Modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -204,7 +204,7 @@ body {
     color: #000;
 }
 
-/* Form Styles */
+
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -253,7 +253,7 @@ body {
     background-color: #187BE5;
 }
 
-/* CV Details */
+
 #cv-details {
     padding: 1rem 0;
 }
@@ -272,7 +272,7 @@ body {
     color: #495057;
 }
 
-/* Footer */
+
 .footer {
     text-align: center;
     padding: 1rem;
@@ -283,7 +283,7 @@ body {
     width: 100%;
 }
 
-/* Dark Mode */
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #1a1a1a;
@@ -343,7 +343,7 @@ body {
     }
 }
 
-/* Responsive Design */
+
 @media screen and (max-width: 1024px) {
     .container {
         flex-direction: column;
@@ -419,7 +419,7 @@ body {
     }
 }
 
-/* Accessibility Improvements */
+
 @media (prefers-reduced-motion: reduce) {
     .cv-card,
     .modal-content {
@@ -431,7 +431,7 @@ body {
     }
 }
 
-/* Print Styles */
+
 @media print {
     .header,
     .sidebar,
@@ -457,13 +457,12 @@ body {
     }
 }
 
-/* Focus Styles */
 :focus {
     outline: 2px solid #1E90FF;
     outline-offset: 2px;
 }
 
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -482,7 +481,6 @@ body {
 }
 
 
-/* Logo Styling */
 .logo-container {
     display: flex;
     align-items: center;
@@ -505,7 +503,7 @@ body {
     color: white;
 }
 
-/* Professional Button Styles */
+
 .btn-professional {
     background-color: #32CD32;
     color: white;
@@ -530,7 +528,7 @@ body {
     font-size: 1.2rem;
 }
 
-/* Enhanced CV Card Styles */
+
 .cv-card {
     display: flex;
     flex-direction: column;
