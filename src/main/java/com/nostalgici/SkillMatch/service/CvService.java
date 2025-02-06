@@ -3,13 +3,15 @@ package com.nostalgici.SkillMatch.service;
 import com.nostalgici.SkillMatch.model.Cv;
 import com.nostalgici.SkillMatch.repository.CvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class CvService {
+@Repository
+public class CvService implements ICVService {
 
     @Autowired
     private CvRepository cvRepository;
@@ -20,24 +22,21 @@ public class CvService {
      * @param filters Mappa contenente i filtri (es. query, anniEsperienza).
      * @return Lista di CV filtrati.
      */
+    @Override
     public List<Cv> getCvs(Map<String, Object> filters) {
-        // Estrai i filtri dalla mappa
+        // sperando che siano giusti
         String searchQuery = (String) filters.get("query");
         List<String> competenze = (List<String>) filters.get("competenze");
         List<String> ruoli = (List<String>) filters.get("ruoli");
         Integer anniEsperienza = (Integer) filters.get("anniEsperienza");
 
-        // Se non ci sono filtri, restituisci tutti i CV
         if (isEmptyFilters(searchQuery, competenze, ruoli, anniEsperienza)) {
             return cvRepository.findAll();
         }
-
-        // Se c'è solo una query di ricerca generica
         if (searchQuery != null && !searchQuery.isEmpty()) {
             return searchByQuery(searchQuery);
         }
 
-        // Se ci sono filtri specifici
         return searchByFilters(competenze, ruoli, anniEsperienza);
     }
 
@@ -47,6 +46,7 @@ public class CvService {
      * @param cv Oggetto Cv da salvare.
      * @return Il CV salvato.
      */
+    @Override
     public Cv saveCv(Cv cv) {
         return cvRepository.save(cv);
     }
@@ -58,6 +58,7 @@ public class CvService {
      * @param updatedCv Nuovi dati del CV.
      * @return Il CV aggiornato, oppure null se non esiste.
      */
+    @Override
     public Cv updateCv(String id, Cv updatedCv) {
         Optional<Cv> existingCv = cvRepository.findById(id);
         if (existingCv.isPresent()) {
@@ -77,6 +78,7 @@ public class CvService {
      *
      * @param id ID del CV da eliminare.
      */
+    @Override
     public void deleteCv(String id) {
         cvRepository.deleteById(id);
     }
@@ -87,6 +89,7 @@ public class CvService {
      * @param id ID del CV da recuperare.
      * @return Il CV trovato, oppure null se non esiste.
      */
+    @Override
     public Cv getCvById(String id) {
         Optional<Cv> cv = cvRepository.findById(id);
         return cv.orElse(null); // Restituisce null se il CV non esiste
@@ -97,16 +100,18 @@ public class CvService {
      *
      * @return Lista di tutti i CV.
      */
+    @Override
     public List<Cv> getAllCvs() {
         return cvRepository.findAll();
     }
-
+    @Override
     public Set<String> getAllRuoli() {
         return cvRepository.findAll().stream()
                 .map(Cv::getRuolo)
                 .collect(Collectors.toSet());
     }
 
+    @Override
     public Set<String> getAllCompetenze() {
         return cvRepository.findAll().stream()
                 .flatMap(cv -> cv.getCompetenze().stream())
@@ -144,7 +149,6 @@ public class CvService {
 
 
     private List<Cv> searchByQuery(String query) {
-        // Cerca in nome, competenze e ruolo
         Set<Cv> results = new HashSet<>();
         results.addAll(cvRepository.findByNomeContainingIgnoreCase(query));
         results.addAll(cvRepository.findByCompetenzeContainingIgnoreCase(query));
