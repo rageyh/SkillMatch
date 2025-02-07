@@ -64,7 +64,7 @@ cd skillmatch
 ### 2. Configura MongoDB
 Assicurati che MongoDB sia configurato correttamente nel file `application.properties`:
 ```properties
-spring.data.mongodb.uri=mongodb://admin:password@localhost:27017/skillmatch
+spring.data.mongodb.uri=mongodb://admin:password@localhost:27018/skillmatch
 spring.data.mongodb.database=skillmatch
 ```
 
@@ -86,6 +86,90 @@ db.cvs.insertMany([
     // Aggiungi altri CV qui...
 ]);
 ```
+
+### **2. Importa DA FUORI il Container Docker**
+
+Se MongoDB è in esecuzione all'interno di un container Docker e vuoi importare un file JSON dal tuo sistema locale, segui questi passaggi:
+
+#### Passo 1: Copia il File JSON nel Container
+Prima di tutto, copia il file JSON dal tuo sistema locale al container Docker:
+
+```bash
+docker cp ./cv_data.json skillmatch-mongodb:/cv_data.json
+```
+
+#### Passo 2: Accedi al Container
+Accedi al container MongoDB:
+
+```bash
+docker exec -it skillmatch-mongodb bash
+```
+
+#### Passo 3: Usa `mongoimport` per Importare i Dati
+Una volta all'interno del container, usa il comando `mongoimport` per importare i dati:
+
+```bash
+mongoimport --uri="mongodb://admin:password@localhost:27018/skillmatch" --collection=cvs --file=/cv_data.json
+```
+
+- `--uri`: Specifica la stringa di connessione al database.
+- `--collection`: Specifica il nome della collezione (es. `cvs`).
+- `--file`: Specifica il percorso del file JSON all'interno del container.
+
+---
+
+### **4. Verifica l'Importazione**
+
+Dopo aver importato i dati, verifica che siano stati inseriti correttamente nel database:
+
+```bash
+docker exec -it skillmatch-mongodb mongosh -u admin -p password --authenticationDatabase admin
+```
+
+Una volta dentro la shell MongoDB, esegui:
+
+```javascript
+use skillmatch;
+db.cvs.find().pretty();
+```
+
+Questo mostrerà tutti i documenti presenti nella collezione `cvs`.
+
+---
+
+### **5. Suggerimenti Utili**
+
+- Assicurati che il file JSON o CSV sia ben formattato prima dell'importazione.
+- Se il database contiene già dati, puoi cancellarli prima di importare nuovi dati:
+  ```bash
+  mongo skillmatch --eval "db.cvs.drop()"
+  ```
+- Se usi Docker Compose, assicurati che il servizio MongoDB sia in esecuzione prima di eseguire i comandi di importazione.
+
+---
+
+Con questa guida, puoi facilmente importare dati in MongoDB, sia da un file JSON che da un file CSV. Se hai bisogno di ulteriori chiarimenti o vuoi automatizzare il processo, fammi sapere! 😊
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
