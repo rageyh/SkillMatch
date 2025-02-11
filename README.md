@@ -1,8 +1,10 @@
 ---
 
+![image](https://github.com/user-attachments/assets/6e444cb3-f258-4530-8fe4-962dd47c4f6a)
+
+
 # 🌟 SkillMatch - Piattaforma di Matching per Competenze 🌟
 
-![SkillMatch Logo]([https://via.placeholder.com/150](https://www.itstechtalentfactory.it/wp-content/uploads/2024/10/ITS-Academy-Tech-Talent-Factory.png)) 
 
 SkillMatch è una piattaforma moderna che permette agli utenti di cercare, visualizzare e caricare CV basati su competenze professionali. L'applicazione combina un'interfaccia utente intuitiva con backend robusto basato su Spring Boot e MongoDB, offrendo un'esperienza fluida e scalabile.
 
